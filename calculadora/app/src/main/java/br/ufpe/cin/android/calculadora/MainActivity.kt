@@ -2,15 +2,132 @@ package br.ufpe.cin.android.calculadora
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
+import android.app.Activity
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+
+    var visor = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        btn_Add.setOnClickListener {
+            visor = visor + "+"
+            text_calc.setText(visor)
+        }
+
+        btn_Subtract.setOnClickListener {
+            visor = visor + "-"
+            text_calc.setText(visor)
+        }
+
+        btn_Multiply.setOnClickListener {
+            visor = visor + "*"
+            text_calc.setText(visor)
+        }
+
+        btn_Divide.setOnClickListener {
+            visor = visor + "/"
+            text_calc.setText(visor)
+        }
+
+        btn_Power.setOnClickListener {
+            visor = visor + "^"
+            text_calc.setText(visor)
+        }
+
+        btn_Clear.setOnClickListener {
+            visor = ""
+            text_calc.setText(visor)
+        }
+
+
+        btn_Equal.setOnClickListener {
+            try {
+                visor = eval(visor).toString()
+                text_info.setText(visor)
+            }
+
+            catch(e: RuntimeException) {
+                Toast.makeText(this, "Digite uma expressão válida", Toast.LENGTH_LONG ).show()
+            }
+
+        }
+
+        btn_0.setOnClickListener {
+            visor = visor + "0"
+            text_calc.setText(visor)
+        }
+
+        btn_1.setOnClickListener {
+            visor = visor + "1"
+            text_calc.setText(visor)
+        }
+
+        btn_2.setOnClickListener {
+            visor = visor + "2"
+            text_calc.setText(visor)
+        }
+
+        btn_3.setOnClickListener {
+            visor = visor + "3"
+            text_calc.setText(visor)
+        }
+
+        btn_4.setOnClickListener {
+            visor = visor + "4"
+            text_calc.setText(visor)
+        }
+
+        btn_5.setOnClickListener {
+            visor = visor + "5"
+            text_calc.setText(visor)
+        }
+
+        btn_6.setOnClickListener {
+            visor = visor + "6"
+            text_calc.setText(visor)
+        }
+
+        btn_7.setOnClickListener {
+            visor = visor + "7"
+            text_calc.setText(visor)
+        }
+
+        btn_8.setOnClickListener {
+            visor = visor + "8"
+            text_calc.setText(visor)
+        }
+
+        btn_9.setOnClickListener {
+            visor = visor + "9"
+            text_calc.setText(visor)
+        }
+
+        btn_Dot.setOnClickListener {
+            visor = visor + "."
+            text_calc.setText(visor)
+        }
+
+        btn_LParen.setOnClickListener {
+            visor = visor + "("
+            text_calc.setText(visor)
+        }
+
+        btn_RParen.setOnClickListener {
+            visor = visor + ")"
+            text_calc.setText(visor)
+        }
+
     }
 
-
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putString("oQueFoiDigitado",text_info.text.toString())
+        outState.putString("oQueFoisalvo",text_calc.text.toString())
+        super.onSaveInstanceState(outState)
+    }
     //Como usar a função:
     // eval("2+2") == 4.0
     // eval("2+3*4") = 14.0
@@ -103,4 +220,5 @@ class MainActivity : AppCompatActivity() {
             }
         }.parse()
     }
+
 }
